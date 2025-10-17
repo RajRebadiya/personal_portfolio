@@ -11,8 +11,8 @@
     <title>Raj Rebadiya - Personal Portfolio</title>
 
     <!-- Place favicon.ico in the root directory -->
-    <link rel="apple-touch-icon" href="./assets/img/favicon.png" />
-    <link rel="shortcut icon" type="image/png" href="./assets/img/favicon.png" />
+    <link rel="apple-touch-icon" href="./assets/img/android-chrome-192x192.png" />
+    <link rel="shortcut icon" type="image/png" href="./assets/img/android-chrome-192x192.png" />
 
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/animate.min.css" />
@@ -32,10 +32,182 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
     <style>
         html {
             scroll-behavior: smooth;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            height: 55px;
+            width: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7f00ff, #3b02e0);
+            box-shadow: 0 8px 25px rgba(123, 59, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(123, 59, 255, 0.6);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        .progress-wrap {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            height: 60px;
+            width: 60px;
+            cursor: pointer;
+            display: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #8750f7, #5322b4);
+            z-index: 9999;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .progress-wrap:hover {
+            transform: scale(1.1);
+        }
+
+        .progress-wrap svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: rotate(-90deg);
+        }
+
+        .progress-wrap path {
+            stroke: #fff;
+            stroke-width: 5;
+            fill: none;
+            stroke-dasharray: 307;
+            stroke-dashoffset: 307;
+            transition: stroke-dashoffset 0.3s linear;
+        }
+
+        .progress-wrap i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .progress-wrap.active {
+            display: block;
+            opacity: 1;
+        }
+
+
+        .tj-footer-area {
+            position: relative;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            padding: 80px 20px 40px;
+            overflow: hidden;
+        }
+
+        .footer-wave {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: url('https://www.svgrepo.com/show/310921/wave.svg') repeat-x;
+            background-size: contain;
+            transform: rotate(180deg);
+            opacity: 0.3;
+        }
+
+        .footer-logo-box img {
+            width: 160px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-logo-box img:hover {
+            transform: scale(1.1);
+        }
+
+        .footer-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: inline-flex;
+            gap: 25px;
+        }
+
+        .footer-menu ul li a {
+            color: #cfd8dc;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-menu ul li a:hover {
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .footer-social a {
+            color: #cfd8dc;
+            margin: 0 12px;
+            font-size: 18px;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #00bcd4;
+            transform: scale(1.2);
+        }
+
+        .copy-text p {
+            font-size: 14px;
+            color: #b0bec5;
+        }
+
+        .copy-text a {
+            color: #00bcd4;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .copy-text a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 767px) {
+            .footer-menu ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .footer-social {
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
@@ -62,12 +234,20 @@
     <!-- Preloader Area End -->
 
     <!-- start: Back To Top -->
-    <div class="progress-wrap" id="scrollUp">
+    {{-- <div class="progress-wrap" id="scrollUp">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
             <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
         </svg>
+        <i class="fa-solid fa-arrow-up"></i>
+    </div> --}}
+    <!-- start: Back To Top -->
+    <div class="back-to-top" id="scrollUp">
+        <i class="fa-solid fa-arrow-up"></i>
     </div>
     <!-- end: Back To Top -->
+
+    <!-- end: Back To Top -->
+
 
     <!-- HEADER START -->
     <header class="tj-header-area header-absolute">
@@ -76,7 +256,7 @@
                 <div class="col-12 d-flex flex-wrap align-items-center">
                     <div class="logo-box">
                         <a href="#intro">
-                            <img src="assets/img/logo/logo-dark.png" alt="" />
+                            <img src="assets/img/logo/raj.png" alt="" />
                         </a>
                     </div>
                     <div class="header-info-list d-none d-md-inline-block">
@@ -118,7 +298,7 @@
                 <div class="col-12 d-flex flex-wrap align-items-center">
                     <div class="logo-box">
                         <a href="#intro">
-                            <img src="assets/img/logo/logo-dark.png" alt="" />
+                            <img src="assets/img/logo/raj.png" alt="" />
                         </a>
                     </div>
                     <div class="header-info-list d-none d-md-inline-block">
@@ -181,8 +361,11 @@
                                 applications.
                             </p>
                             <div class="button-box d-flex flex-wrap align-items-center">
-                                <a href="#contact-section" class="btn tj-btn-secondary">Download CV <i
-                                        class="flaticon-download"></i></a>
+                                <a href="{{ url('/assets/files/Raj_Resume.pdf') }}" class="btn tj-btn-secondary"
+                                    download>
+                                    Download CV <i class="flaticon-download"></i>
+                                </a>
+
                                 <ul class="ul-reset social-icons">
 
                                     <li>
@@ -467,9 +650,8 @@
                         <div class="section-header text-center">
                             <h2 class="section-title wow fadeInUp" data-wow-delay=".3s">My Recent Works</h2>
                             <p class="wow fadeInUp" data-wow-delay=".4s">
-                                We put your ideas and thus your wishes in the form of a unique web project that inspires
-                                you and
-                                you customers.
+                                A selection of my latest projects that highlight my skills in creating modern,
+                                user-focused, and high-performing web solutions.
                             </p>
                         </div>
                     </div>
@@ -542,8 +724,7 @@
                             </div>
                             <div class="portfolio-item uxui">
                                 <div class="image-box">
-                                    <img src="{{ asset('assets/img/instagram/dashboard.png') }}"
-                                        alt="" />
+                                    <img src="{{ asset('assets/img/instagram/dashboard.png') }}" alt="" />
                                 </div>
                                 <div class="content-box">
                                     <h3 class="portfolio-title">Instant Reel</h3>
@@ -751,10 +932,12 @@
                             alt="Stock Management" />
                     </div>
                     <div class="gallery_item">
-                        <img src="{{ asset('assets/img/Veer_creation_photos/task.png') }}" alt="Reports & Insights" />
+                        <img src="{{ asset('assets/img/Veer_creation_photos/task.png') }}"
+                            alt="Reports & Insights" />
                     </div>
                     <div class="gallery_item">
-                        <img src="{{ asset('assets/img/Veer_creation_photos/role.png') }}" alt="Reports & Insights" />
+                        <img src="{{ asset('assets/img/Veer_creation_photos/role.png') }}"
+                            alt="Reports & Insights" />
                     </div>
                 </div>
 
@@ -1275,7 +1458,8 @@
                                 they retain full audio-video quality for personal or professional use.
                             </p>
                         </div>
-                        <a href="https://instagram-reel-downloader-3a4c.onrender.com" target="_blank" class="btn tj-btn-primary">
+                        <a href="https://instagram-reel-downloader-3a4c.onrender.com" target="_blank"
+                            class="btn tj-btn-primary">
                             Live Preview <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
@@ -1311,8 +1495,7 @@
                         <img src="{{ asset('assets/img/instagram/service.png') }}" alt="Settings & Options" />
                     </div>
                     <div class="gallery_item">
-                        <img src="{{ asset('assets/img/instagram/faq.png') }}"
-                            alt="Downloaded Reel Preview" />
+                        <img src="{{ asset('assets/img/instagram/faq.png') }}" alt="Downloaded Reel Preview" />
                     </div>
                 </div>
 
@@ -1403,16 +1586,16 @@
 
                         <div class="resume-widget">
                             <div class="resume-item wow fadeInLeft" data-wow-delay=".4s">
-                                <div class="time">2022 - Present</div>
-                                <h3 class="resume-title">Programming course</h3>
-                                <div class="institute">Blockdots, London</div>
+                                <div class="time">2024 November - Present</div>
+                                <h3 class="resume-title">Veer Creation</h3>
+                                <div class="institute">Junior Laravel Developer</div>
                             </div>
                             <div class="resume-item wow fadeInLeft" data-wow-delay=".5s">
-                                <div class="time">2021 - 2022</div>
-                                <h3 class="resume-title">CMS course</h3>
-                                <div class="institute">Parsons, The New School</div>
+                                <div class="time">2024 March - 2024 Octomber</div>
+                                <h3 class="resume-title">Brain Art IT Solution</h3>
+                                <div class="institute">Laravel Intern</div>
                             </div>
-                            <div class="resume-item wow fadeInLeft" data-wow-delay=".6s">
+                            {{-- <div class="resume-item wow fadeInLeft" data-wow-delay=".6s">
                                 <div class="time">2020 - 2021</div>
                                 <h3 class="resume-title">Web design course</h3>
                                 <div class="institute">House of Life, Leeds</div>
@@ -1421,7 +1604,7 @@
                                 <div class="time">2018 - 2020</div>
                                 <h3 class="resume-title">Parsons, The New School</h3>
                                 <div class="institute">Theme Junction, Bursa</div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -1430,25 +1613,25 @@
                         </div>
                         <div class="resume-widget">
                             <div class="resume-item wow fadeInRight" data-wow-delay=".5s">
-                                <div class="time">2020 - 2023</div>
-                                <h3 class="resume-title">BLOCKDOTS</h3>
-                                <div class="institute">Harverd University</div>
+                                <div class="time">2021 - 2024</div>
+                                <h3 class="resume-title">Bachelor of Computer Application</h3>
+                                <div class="institute">Atmanand Saraswati Science College</div>
                             </div>
                             <div class="resume-item wow fadeInRight" data-wow-delay=".6s">
-                                <div class="time">2016 - 2020</div>
-                                <h3 class="resume-title">Parsons, The New School</h3>
-                                <div class="institute">University of Denmark</div>
+                                <div class="time">2020 - 2021</div>
+                                <h3 class="resume-title">Higher Secondary School</h3>
+                                <div class="institute">Sadhana Vidhya Bhavan</div>
                             </div>
                             <div class="resume-item wow fadeInRight" data-wow-delay=".7s">
-                                <div class="time">2012 - 2015</div>
-                                <h3 class="resume-title">IDEO</h3>
-                                <div class="institute">University of California</div>
+                                <div class="time">2018 - 2019</div>
+                                <h3 class="resume-title">Secondary School </h3>
+                                <div class="institute">Saraswati Vidhyalay</div>
                             </div>
-                            <div class="resume-item wow fadeInRight" data-wow-delay=".8s">
+                            {{-- <div class="resume-item wow fadeInRight" data-wow-delay=".8s">
                                 <div class="time">2010 - 2011</div>
                                 <h3 class="resume-title">Parsons, The New School</h3>
                                 <div class="institute">Parsons, The New School</div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -1464,10 +1647,10 @@
                         <div class="section-header text-center">
                             <h2 class="section-title wow fadeInUp" data-wow-delay=".3s">My Skills</h2>
                             <p class="wow fadeInUp" data-wow-delay=".4s">
-                                We put your ideas and thus your wishes in the form of a unique web project that inspires
-                                you and
-                                you customers.
+                                I craft modern, responsive, and performance-driven websites that bring ideas to life
+                                and help brands stand out online.
                             </p>
+
                         </div>
                     </div>
                 </div>
@@ -1479,7 +1662,7 @@
                                     <div class="icon-box">
                                         <img src="assets/img/icons/skills-1.svg" alt="" />
                                     </div>
-                                    <div class="number">92%</div>
+                                    <div class="number">95%</div>
                                 </div>
                                 <p>HTML</p>
                             </div>
@@ -1497,36 +1680,36 @@
                                     <div class="icon-box">
                                         <img src="assets/img/icons/skills-3.svg" alt="" />
                                     </div>
-                                    <div class="number">85%</div>
+                                    <div class="number">80%</div>
                                 </div>
                                 <p>Javascript</p>
                             </div>
                             <div class="skill-item wow fadeInUp" data-wow-delay=".6s">
                                 <div class="skill-inner">
                                     <div class="icon-box">
-                                        <img src="assets/img/icons/webflow-1.svg" alt="" />
+                                        <img src="assets/img/icons/Laravel.svg" alt="" />
                                     </div>
-                                    <div class="number">99%</div>
+                                    <div class="number">95%</div>
                                 </div>
-                                <p>Webflow</p>
+                                <p>Laravel</p>
                             </div>
                             <div class="skill-item wow fadeInUp" data-wow-delay=".7s">
                                 <div class="skill-inner">
                                     <div class="icon-box">
-                                        <img src="assets/img/icons/react.svg" alt="" />
+                                        <img src="assets/img/icons/MySQL.svg" alt="" />
                                     </div>
-                                    <div class="number">89%</div>
+                                    <div class="number">85%</div>
                                 </div>
-                                <p>ReactJS</p>
+                                <p>MySQL</p>
                             </div>
                             <div class="skill-item wow fadeInUp" data-wow-delay=".8s">
                                 <div class="skill-inner">
                                     <div class="icon-box">
-                                        <img src="assets/img/icons/framer-1.svg" alt="" />
+                                        <img src="assets/img/icons/jQuery.svg" alt="" />
                                     </div>
-                                    <div class="number">93%</div>
+                                    <div class="number">90%</div>
                                 </div>
-                                <p>Framer</p>
+                                <p>jquery</p>
                             </div>
                         </div>
                     </div>
@@ -1548,46 +1731,65 @@
                             </div>
 
                             <div class="tj-contact-form">
-                                <form id="contact-form">
+                                <form id="contac-form" action="{{ route('contact.send') }}" method="POST">
+                                    @csrf
                                     <div class="row gx-3">
                                         <div class="col-sm-6">
                                             <div class="form_group">
                                                 <input type="text" name="conName" id="conName"
-                                                    placeholder="First name" autocomplete="off" />
+                                                    placeholder="First name" value="{{ old('conName') }}">
+                                                @error('conName')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form_group">
                                                 <input type="text" name="conLName" id="conLName"
-                                                    placeholder="Last name" autocomplete="off" />
+                                                    placeholder="Last name" value="{{ old('conLName') }}">
+                                                @error('conLName')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form_group">
                                                 <input type="email" name="conEmail" id="conEmail"
-                                                    placeholder="Email address" autocomplete="off" />
+                                                    placeholder="Email address" value="{{ old('conEmail') }}">
+                                                @error('conEmail')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form_group">
                                                 <input type="tel" name="conPhone" id="conPhone"
-                                                    placeholder="Phone number" autocomplete="off" />
+                                                    placeholder="Phone number" value="{{ old('conPhone') }}">
+                                                @error('conPhone')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form_group">
                                                 <select name="conService" id="conService" class="tj-nice-select">
-                                                    <option value="" selected disabled>Choose Service</option>
-                                                    <option value="braning">Branding Design</option>
-                                                    <option value="web">Web Design</option>
-                                                    <option value="uxui">UI/UX Design</option>
-                                                    <option value="app">App Design</option>
+                                                    <option value="" disabled selected>Choose Service</option>
+                                                    <option value="website_work">WebSite Development</option>
+                                                    <option value="api_work">API Integration & Development</option>
+                                                    <option value="saas_product">Saas Product</option>
+                                                    <option value="crm_software">CRM Software</option>
                                                 </select>
+                                                @error('conService')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form_group">
-                                                <textarea name="conMessage" id="conMessage" placeholder="Message"></textarea>
+                                                <textarea name="conMessage" id="conMessage" placeholder="Message">{{ old('conMessage') }}</textarea>
+                                                @error('conMessage')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -1598,6 +1800,11 @@
                                         </div>
                                     </div>
                                 </form>
+
+                                @if (session('success'))
+                                    <div class="alert alert-success mt-3">{{ session('success') }}</div>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -1612,7 +1819,7 @@
                                     </div>
                                     <div class="text-box">
                                         <p>Phone</p>
-                                        <a href="tel:0123456789">+01 123 654 8096</a>
+                                        <a href="tel:0123456789">+91 63532 72524</a>
                                     </div>
                                 </li>
                                 <li class="d-flex flex-wrap align-items-center position-relative wow fadeInRight"
@@ -1622,7 +1829,7 @@
                                     </div>
                                     <div class="text-box">
                                         <p>Email</p>
-                                        <a href="mailto:mail@mail.com">gerolddesign@mail.com</a>
+                                        <a href="mailto:mail@mail.com">rajrebadiya02@mail.com</a>
                                     </div>
                                 </li>
                                 <li class="d-flex flex-wrap align-items-center position-relative wow fadeInRight"
@@ -1632,7 +1839,7 @@
                                     </div>
                                     <div class="text-box">
                                         <p>Address</p>
-                                        <a href="#contact-section">Warne Park Street Pine, <br />FL 33157, New York</a>
+                                        <a href="#contact-section">Surat , Gujarat , India</a>
                                     </div>
                                 </li>
                             </ul>
@@ -1686,13 +1893,15 @@
 
     <!-- FOOTER AREA START -->
     <footer class="tj-footer-area">
+        <div class="footer-wave"></div>
         <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="footer-logo-box">
-                        <a href="#intro"><img src="assets/img/logo/logo-dark.png" alt="" /></a>
+            <div class="row justify-content-center text-center">
+                <div class="col-md-8">
+                    <div class="footer-logo-box mb-4">
+                        <a href="#intro"><img src="assets/img/logo/raj.png" alt="Logo" /></a>
                     </div>
-                    <div class="footer-menu">
+
+                    <div class="footer-menu mb-4">
                         <nav>
                             <ul>
                                 <li><a href="#intro">Home</a></li>
@@ -1702,8 +1911,11 @@
                             </ul>
                         </nav>
                     </div>
+
                     <div class="copy-text">
-                        <p>&copy; 2024 All rights reserved by <a href="#intro" target="_blank">ThemeJunction</a>
+                        <p>
+                            &copy; {{ date('Y') }} All rights reserved by
+                            <a href="#intro" target="_blank">Raj Rebadiya</a>
                         </p>
                     </div>
                 </div>
@@ -1711,6 +1923,53 @@
         </div>
     </footer>
     <!-- FOOTER AREA END -->
+
+    <script>
+        const scrollUp = document.getElementById("scrollUp");
+        const path = scrollUp.querySelector("path");
+        const pathLength = path.getTotalLength();
+
+        window.addEventListener("scroll", () => {
+            const scroll = window.scrollY;
+            const height = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = pathLength - (scroll * pathLength) / height;
+            path.style.strokeDashoffset = progress;
+
+            if (scroll > 300) {
+                scrollUp.classList.add("active");
+            } else {
+                scrollUp.classList.remove("active");
+            }
+        });
+
+        scrollUp.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+    <script>
+        const scrollBtn = document.getElementById("scrollUp");
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add("show");
+            } else {
+                scrollBtn.classList.remove("show");
+            }
+        });
+
+        scrollBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+
+
+
 
     <!-- JS here -->
     <script src="assets/js/jquery.min.js"></script>
