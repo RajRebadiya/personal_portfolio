@@ -348,8 +348,8 @@
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="hero-content-box">
-                            <span class="hero-sub-title">I am Raj</span>
-                            <h1 class="hero-title">Laravel<br> Developer.</h1>
+                           <span class="hero-sub-title">Hi, I'm Raj Rebadiya</span>
+                        <h1 class="hero-title">Full-Stack Laravel<br>Developer</h1>
 
                             <div class="hero-image-box d-md-none text-center">
                                 <img src="assets/img/hero/me_4.png" style="height: 550px !important;"
